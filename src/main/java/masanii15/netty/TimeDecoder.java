@@ -9,13 +9,15 @@ import io.netty.handler.codec.ByteToMessageDecoder;
 
 public class TimeDecoder extends ByteToMessageDecoder {
 
-    @Override
-    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-        if (in.readableBytes() < 4) {
-            return; // (3)
-        }
+	@Override
+	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+		if (in.readableBytes() < 4) {
+			System.out.println("hoge");
+			return; // (3)
+		}
 
-        out.add(in.readBytes(4));
-    }
+		System.out.println(in.readableBytes());
+		out.add(in.readBytes(4));
+	}
 
 }
