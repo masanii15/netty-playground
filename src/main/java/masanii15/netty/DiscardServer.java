@@ -27,7 +27,7 @@ public class DiscardServer {
              .childHandler(new ChannelInitializer<SocketChannel>() { // (4)
                  @Override
                  public void initChannel(SocketChannel ch) throws Exception {
-                     ch.pipeline().addLast(new DiscardServerHandler());
+                     ch.pipeline().addLast(new TimeServerHandler());
                  }
              })
              .option(ChannelOption.SO_BACKLOG, 128)          // (5)
@@ -35,6 +35,8 @@ public class DiscardServer {
     
             // Bind and start to accept incoming connections.
             ChannelFuture f = b.bind(port).sync(); // (7)
+//            ChannelFuture f = b.bind(37).sync(); // (7)
+
             ChannelFuture f2 = b.bind(8081).sync(); // (7)
     
             // Wait until the server socket is closed.
